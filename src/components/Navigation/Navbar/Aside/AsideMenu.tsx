@@ -1,23 +1,17 @@
-import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-
+import Typography from "@mui/material/Typography";
+import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/material/Box";
+import { Category } from "../../../../types/Category";
 
-interface Category {
-  id: string;
-  code: string;
-  description: string;
-}
-
-interface Props {
+interface AsideMenuProps {
   categories: Category[];
 }
 
-const AsideMenu = ({ categories }: Props) => {
+const AsideMenu: React.FC<AsideMenuProps> = ({ categories }) => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -60,7 +54,7 @@ const AsideMenu = ({ categories }: Props) => {
       >
         {categories.map((category) => (
           <MenuItem key={category.id} onClick={handleCloseNavMenu}>
-            <Typography textAlign="center">{category.description}</Typography>
+            <Typography textAlign="center" textTransform="capitalize">{category.description}</Typography>
           </MenuItem>
         ))}
       </Menu>

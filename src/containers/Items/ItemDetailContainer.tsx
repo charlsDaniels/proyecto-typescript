@@ -4,12 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import ItemDetail from "../../components/Items/ItemDetail";
 import Loader from "../../components/UI/Loader";
 import { fetchProductById } from "../../services/firebase/querys";
-import { BDProduct } from "../../types/Product";
+import { DBProduct } from "../../types/Product";
 
 const ItemDetailContainer = () => {
   const { productId } = useParams();
 
-  const [product, setProduct] = useState<BDProduct | null>(null);
+  const [product, setProduct] = useState<DBProduct | null>(null);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();

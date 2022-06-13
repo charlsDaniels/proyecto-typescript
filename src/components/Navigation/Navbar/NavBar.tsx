@@ -46,16 +46,16 @@
 // export default NavBar;
 
 import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
+import Toolbar from "@mui/material/Toolbar";
+import React, { useEffect, useState } from "react";
+import { fetchCategories } from "../../../services/firebase/querys";
+import { Category } from "../../../types/Category";
 import Brand from "../../Brand/Logo";
 import AsideMenu from "./Aside/AsideMenu";
 import NavigationItems from "./NavigationItems/NavigationItems";
-import { useEffect, useState } from "react";
-import { Category } from "../../../types/Category";
-import { fetchCategories } from "../../../services/firebase/querys";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
 
   const fetchData = async () => {

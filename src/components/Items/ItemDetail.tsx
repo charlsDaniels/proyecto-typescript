@@ -1,22 +1,22 @@
-//@ts-check
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
 import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../providers/AuthProvider";
 import { CartContext } from "../../providers/CartProvider";
-import { CartContextType } from "../../types/Cart";
-import { BDProduct, Size } from "../../types/Product";
-import { CartItemInterface } from "../../types/Cart";
+import { CartContextType, CartItemInterface } from "../../types/Cart";
+import { DBProduct, Size } from "../../types/Product";
 import ItemCount from "./ItemCount";
 
 interface Props {
-  item: BDProduct;
+  item: DBProduct;
 }
 
 const ItemDetail = ({ item }: Props) => {
   const cartContext = useContext(CartContext) as CartContextType;
+  const { userIsAuthenticated, openAuthModal } = useAuth();
 
   const [stock, setStock] = useState(0);
   const [initialCount, setInitialCount] = useState(0);
@@ -24,22 +24,26 @@ const ItemDetail = ({ item }: Props) => {
   const [showCheckoutBtn, setShowCheckoutBtn] = useState(false);
 
   const onAddHandler = (quantity: number) => {
-    const selectedQuantity =
-      initialCount === 1 ? quantity - 1 : quantity - initialCount;
+    if (!userIsAuthenticated()) {
+      openAuthModal();
+    } else {
+      const selectedQuantity =
+        initialCount === 1 ? quantity - 1 : quantity - initialCount;
 
-    cartContext.addItem(
-      {
-        id: item.id,
-        categoryDescription: item.categoryDescription,
-        title: item.title,
-        price: item.price,
-        pictureUrl: item.pictureUrl,
-        sizes: [],
-      } as CartItemInterface,
-      selectedSize,
-      selectedQuantity
-    );
-    setShowCheckoutBtn(true);
+      cartContext.addItem(
+        {
+          id: item.id,
+          categoryDescription: item.categoryDescription,
+          title: item.title,
+          price: item.price,
+          pictureUrl: item.pictureUrl,
+          sizes: [],
+        } as CartItemInterface,
+        selectedSize,
+        selectedQuantity
+      );
+      setShowCheckoutBtn(true);
+    }
   };
 
   const selectSizeHandler = (size: Size) => {

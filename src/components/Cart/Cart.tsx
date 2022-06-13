@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../../providers/CartProvider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -7,7 +7,7 @@ import CheckoutForm from "./CheckoutForm";
 import Empty from "../Navigation/Empty";
 import { CartContextType } from "../../types/Cart";
 
-const Cart = () => {
+const Cart: React.FC = () => {
   const cartContext = useContext(CartContext) as CartContextType;
 
   if (cartContext.isEmpty()) {

@@ -18,7 +18,7 @@ const CartWidget = () => {
           <IconButton sx={{ p: 0 }}>
             <Badge badgeContent={cartContext.numberOfItems()} color="success">
               <ShoppingCart
-                alt="Carrito de compras"
+                titleAccess="Carrito de compras"
                 color="secondary"
                 fontSize="large"
               />

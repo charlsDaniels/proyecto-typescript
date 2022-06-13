@@ -4,10 +4,10 @@ import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
-import { BDProduct } from "../../types/Product";
+import { DBProduct } from "../../types/Product";
 
 interface Props {
-  item: BDProduct;
+  item: DBProduct;
 }
 
 const Item = ({ item }: Props) => {

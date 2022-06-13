@@ -3,7 +3,7 @@ export interface Size {
   stock: number;
 }
 
-export interface BDProduct {
+export interface DBProduct {
   id: string;
   categoryCode: string;
   categoryDescription: string;

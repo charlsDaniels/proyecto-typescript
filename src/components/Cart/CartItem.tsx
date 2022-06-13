@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../providers/CartProvider";
 import { CartContextType, CartItemInterface, ItemSize } from "../../types/Cart";
@@ -13,7 +13,7 @@ interface Props {
   item: CartItemInterface;
 }
 
-const CartItem = ({ item }: Props) => {
+const CartItem: React.FC<Props> = ({ item }) => {
   const cartContext = useContext(CartContext) as CartContextType;
 
   const productTitle = (item: CartItemInterface) => {

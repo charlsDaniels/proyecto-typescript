@@ -1,9 +1,13 @@
+import React from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 
-const OrderModal = ({ orderId, onClose }) => {
+interface CustomModalProps {
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+const CustomModal: React.FC<CustomModalProps> = ({ children, onClose }) => {
   return (
     <Modal
       open
@@ -22,23 +26,16 @@ const OrderModal = ({ orderId, onClose }) => {
           border: "2px solid #000",
           boxShadow: 24,
           p: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 3
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 3,
         }}
       >
-        <Typography variant="h6" component="h2">
-          Recibimos tu solicitud!
-        </Typography>
-        <Typography>El código de tu orden es: {orderId}</Typography>
-
-        <Button variant="outlined" color="secondary" onClick={onClose}>
-          Aceptar
-        </Button>
+        {children}
       </Box>
     </Modal>
   );
 };
 
-export default OrderModal;
+export default CustomModal;

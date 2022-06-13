@@ -7,7 +7,7 @@ import {
 
 import { Category } from '../../types/Category';
 // Import all your model types
-import { BDProduct } from '../../types/Product';
+import { DBProduct } from '../../types/Product';
 
 require("./initialize");
 
@@ -19,7 +19,7 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
 }
 
 // export all your collections
-export const productsCol = createCollection<BDProduct>('products')
+export const productsCol = createCollection<DBProduct>('products')
 export const categoriesCol = createCollection<Category>('categories')
 
 const fetchCategories = () => {

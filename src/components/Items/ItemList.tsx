@@ -1,10 +1,10 @@
 //@ts-check
 import Box from "@mui/material/Box";
-import { BDProduct } from "../../types/Product";
+import { DBProduct } from "../../types/Product";
 import Item from "./Item";
 
 interface Props {
-  items: BDProduct[];
+  items: DBProduct[];
 }
 
 const ItemList = ({ items }: Props) => {

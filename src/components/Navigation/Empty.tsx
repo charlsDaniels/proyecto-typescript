@@ -2,7 +2,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-const Empty = ({ messages }) => {
+interface Props {
+  messages: string[];
+}
+
+const Empty = ({ messages }: Props) => {
   return (
     <Box
       sx={{

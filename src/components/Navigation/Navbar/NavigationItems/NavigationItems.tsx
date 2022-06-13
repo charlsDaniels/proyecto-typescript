@@ -3,6 +3,9 @@ import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 import { Category } from "../../../../types/Category";
 import CartWidget from "../../../Cart/CartWidget";
+import { useContext } from "react";
+import { useAuth } from "../../../../providers/AuthProvider";
+import { AuthContextType } from "../../../../types/Auth";
 
 //si uso el modo 2 para Props puedo tipar children en el caso de necesitarlo.
 interface Props {
@@ -25,6 +28,8 @@ const NavigationItems = ({ categories }: Props) => {
       : { color: "#000" };
   };
 
+  const auth = useAuth();
+
   return (
     <>
       <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -33,7 +38,7 @@ const NavigationItems = ({ categories }: Props) => {
             component={NavLink}
             to={`/category/${cat.description}`}
             // style={({ isActive }) => linkStyle(isActive)}
-            style={{ color: "#000"}}
+            style={{ color: "#000" }}
             key={cat.id}
             sx={{ my: 2, display: "block", fontSize: 16 }}
           >
@@ -42,7 +47,17 @@ const NavigationItems = ({ categories }: Props) => {
         ))}
       </Box>
 
-      <CartWidget />
+      {auth.userIsAuthenticated() ? (
+        <CartWidget />
+      ) : (
+        <Button
+          style={{ color: "#000" }}
+          sx={{ ml: 3, my: 2, display: "block", fontSize: 16 }}
+          onClick={auth.openAuthModal}
+        >
+          Ingresar
+        </Button>
+      )}
     </>
   );
 };

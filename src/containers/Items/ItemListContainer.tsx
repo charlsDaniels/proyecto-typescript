@@ -5,12 +5,12 @@ import { useParams } from "react-router-dom";
 import ItemList from "../../components/Items/ItemList";
 import Loader from "../../components/UI/Loader";
 import { fetchProducts } from "../../services/firebase/querys";
-import { BDProduct } from "../../types/Product";
+import { DBProduct } from "../../types/Product";
 
 const ItemListContainer = () => {
   const { categoryId } = useParams();
 
-  const [products, setProducts] = useState<BDProduct[]>([]);
+  const [products, setProducts] = useState<DBProduct[]>([]);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
