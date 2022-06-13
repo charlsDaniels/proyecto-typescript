@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# CharlTops E-commerce
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto se realizó como práctica para el curso de `React Js` de `coder-house`.
 
-## Available Scripts
+El sistema consiste en un E-commerce que permite ver productos (Camisas y Remeras), seleccionar distintos talles y cantidades de estos y agregarlos a un carrito para su posterior compra.
+Los productos pueden visualizarse en su totalidad desde la página principal o clasificados por categoría.
 
-In the project directory, you can run:
+![GIF de demostración.](/public/e-commerce.gif "Demo de una compra.")
+
+# URL del sitio web
+
+https://charltops-ecommerce.web.app/
+
+## Comandos útiles para correr la aplicación
+
+Una vez clonado el proyecto (rama main) y dentro del directorio principal se pueden ejecutar los siguientes comandos:
+
+### `npm install`
+
+Con este comando se creará la carpeta \node_modules y se instalarán allí las dependencias necesarias para correr la aplicación.
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Levanta la app en modo desarrollo en el puerto [http://localhost:3000]
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Librerías utilizadas
 
-### `npm test`
+* [React Js v18](https://reactjs.org)
+* [React Router Dom v6](https://reactrouter.com/docs/en/v6)
+* [Material UI v5](https://mui.com/)
+* [Firebase v9](https://firebase.google.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Detalles de implementación
 
-### `npm run build`
+Al momento de visualizar una remera o camisa en particular se optó por dar la posibilidad de elegir el talle de la misma. El stock va a variar dependiendo la opción que se elija. 
+Si se agrega una cierta cantidad de un producto al carrito y luego esa cantidad se quiere modificar, el contador iniciará su valor en el que ya haya en el carrito para ese producto. De esta manera se evita que el usuario agregue más de lo disponible.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para la etapa de check-out se utilizó la misma ruta/vista `/cart` tanto para la visualización de los productos del carrito como para el formulario con los datos personales del comprador. Me pareció que el diseño visual se complementaba bien de ese modo y además, que no era práctico generar otra ruta/vista para solo mostrar el formulario.
+Para la validación del formulario (teléfono y email) no se agregó ninguna librería externa.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+El sitio cumple con diseño responsive para poder ser visualizado de manera correcta en una tablet/celular.
