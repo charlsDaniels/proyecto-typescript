@@ -12,13 +12,13 @@ import { useNavigate } from "react-router-dom";
 import { serverTimestamp } from "firebase/firestore";
 import Loader from "../UI/Loader";
 import { CartContextType } from "../../types/Cart";
-import { useAuth } from "../../providers/AuthProvider";
+import { useAuthContext } from "../../providers/AuthProvider";
 
 const CheckoutForm = () => {
   const cartContext = useContext(CartContext) as CartContextType;
   const navigate = useNavigate();
 
-  const { authUser } = useAuth();
+  const { authUser } = useAuthContext();
 
   const [user, setUser] = useState({
     name: "",

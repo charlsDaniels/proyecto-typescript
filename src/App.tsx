@@ -40,7 +40,6 @@ const App: React.FC = () => {
                   path="/item/:productId"
                   element={<ItemDetailContainer />}
                 />
-
                 <Route
                   path="/cart"
                   element={
@@ -49,7 +48,6 @@ const App: React.FC = () => {
                     </ProtectedRoute>
                   }
                 />
-
                 <Route path="/*" element={<NotFound />} />
               </Routes>
             </Container>

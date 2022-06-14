@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { useAuth } from "../../providers/AuthProvider";
+import { useAuthContext } from "../../providers/AuthProvider";
 import { auth } from "../../services/firebase/initialize";
 
 interface RegisterProps {
@@ -18,7 +18,7 @@ const Register: React.FC<RegisterProps> = ({ onChangeMode }) => {
 
   const [error, setError] = useState("");
 
-  const { closeAuthModal } = useAuth();
+  const { closeAuthModal } = useAuthContext();
 
   const validatePassword = () => {
     let isValid = true;

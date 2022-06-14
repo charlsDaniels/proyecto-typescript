@@ -4,7 +4,7 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
 import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../providers/AuthProvider";
+import { useAuthContext } from "../../providers/AuthProvider";
 import { CartContext } from "../../providers/CartProvider";
 import { CartContextType, CartItemInterface } from "../../types/Cart";
 import { DBProduct, Size } from "../../types/Product";
@@ -16,7 +16,7 @@ interface Props {
 
 const ItemDetail = ({ item }: Props) => {
   const cartContext = useContext(CartContext) as CartContextType;
-  const { userIsAuthenticated, openAuthModal } = useAuth();
+  const { userIsAuthenticated, openAuthModal } = useAuthContext();
 
   const [stock, setStock] = useState(0);
   const [initialCount, setInitialCount] = useState(0);

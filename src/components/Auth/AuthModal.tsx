@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../../providers/AuthProvider";
+import { useAuthContext } from "../../providers/AuthProvider";
 import Login from "./Login";
 import Register from "./Register";
 import CustomModal from "../UI/CustomModal";
@@ -12,7 +12,7 @@ const AuthModal: React.FC = () => {
 
   const [mode, setMode] = useState(Modes.LOGIN);
 
-  const { closeAuthModal } = useAuth();
+  const { closeAuthModal } = useAuthContext();
 
   const toggleMode = () => {
     setMode(mode === Modes.LOGIN ? Modes.REGISTER : Modes.LOGIN);

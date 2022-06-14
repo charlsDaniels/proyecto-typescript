@@ -4,14 +4,15 @@ import {
   User as FirebaseUser,
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthModal from "../components/Auth/AuthModal";
 import { auth } from "../services/firebase/initialize";
 import { AuthContextType } from "../types/Auth";
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const authContext = createContext<AuthContextType | null>(null);
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
+export const useAuthContext = () => {
+  const context = useContext(authContext);
   if (!context) throw new Error("There is not auth provider");
   return context;
 };
@@ -25,6 +26,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const [openModal, setOpenModal] = useState(false);
 
+  const navigate = useNavigate();
+
   const userIsAuthenticated = () => {
     return authUser !== null;
   };
@@ -35,6 +38,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = () => {
     signOut(auth);
+    navigate("/");
   };
 
   useEffect(() => {
@@ -44,7 +48,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider
+    <authContext.Provider
       value={{
         authUser,
         userIsAuthenticated,
@@ -55,7 +59,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     >
       {openModal && <AuthModal />}
       {children}
-    </AuthContext.Provider>
+    </authContext.Provider>
   );
 };
 

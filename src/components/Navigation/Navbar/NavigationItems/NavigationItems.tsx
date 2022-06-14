@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 import { Category } from "../../../../types/Category";
 import CartWidget from "../../../Cart/CartWidget";
-import { useAuth } from "../../../../providers/AuthProvider";
+import { useAuthContext } from "../../../../providers/AuthProvider";
 import { useEffect } from "react";
 
 //si uso el modo 2 para Props puedo tipar children en el caso de necesitarlo.
@@ -27,7 +27,7 @@ const NavigationItems = ({ categories }: Props) => {
       : { color: "#000" };
   };
 
-  const auth = useAuth();
+  const auth = useAuthContext();
 
   const btnStyle = {
     style: { color: "#000" },
