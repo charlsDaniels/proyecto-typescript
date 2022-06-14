@@ -12,15 +12,18 @@ import { useNavigate } from "react-router-dom";
 import { serverTimestamp } from "firebase/firestore";
 import Loader from "../UI/Loader";
 import { CartContextType } from "../../types/Cart";
+import { useAuth } from "../../providers/AuthProvider";
 
 const CheckoutForm = () => {
   const cartContext = useContext(CartContext) as CartContextType;
   const navigate = useNavigate();
 
+  const { authUser } = useAuth();
+
   const [user, setUser] = useState({
     name: "",
     phone: "",
-    email: "",
+    email: authUser!.email,
   });
 
   const [openModal, setShowModal] = useState(false);

@@ -1,6 +1,12 @@
-import { createContext, useContext, useState } from "react";
+import {
+  onAuthStateChanged,
+  signOut,
+  User as FirebaseUser,
+} from "firebase/auth";
+import { createContext, useContext, useEffect, useState } from "react";
 import AuthModal from "../components/Auth/AuthModal";
-import { AuthContextType, User } from "../types/Auth";
+import { auth } from "../services/firebase/initialize";
+import { AuthContextType } from "../types/Auth";
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -15,29 +21,36 @@ type AuthProviderProps = {
 };
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<null | User>(null);
+  const [authUser, setUser] = useState<null | FirebaseUser>(null);
 
   const [openModal, setOpenModal] = useState(false);
 
   const userIsAuthenticated = () => {
-    return !!user;
+    return authUser !== null;
   };
-
-  // const login = () => {
-  //   signInWithEmailAndPasword()
-  // };
 
   const openAuthModal = () => setOpenModal(true);
 
   const closeAuthModal = () => setOpenModal(false);
 
+  const logout = () => {
+    signOut(auth);
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
-        user,
+        authUser,
         userIsAuthenticated,
         openAuthModal,
         closeAuthModal,
+        logout,
       }}
     >
       {openModal && <AuthModal />}

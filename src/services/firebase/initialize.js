@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCmaYqDKiTLmsdjfayCfn1ljjSMWhrPmrU",
@@ -7,7 +8,9 @@ const firebaseConfig = {
   storageBucket: "charltops-ecommerce.appspot.com",
   messagingSenderId: "258733256274",
   appId: "1:258733256274:web:13af221ad663898cd3b98b",
-  measurementId: "G-FPH0DEQ6T3",
 };
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+export { auth };

@@ -14,6 +14,7 @@ const OrderModal = ({ orderId, onClose }: Props) => {
         Recibimos tu solicitud!
       </Typography>
       <Typography>El código de tu orden es: {orderId}</Typography>
+      <Typography>En breve nos pondremos en contacto con vos!</Typography>
 
       <Button variant="outlined" color="secondary" onClick={onClose}>
         Aceptar

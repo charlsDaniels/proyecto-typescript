@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import Login from "./Login";
@@ -23,9 +22,6 @@ const AuthModal: React.FC = () => {
     <CustomModal onClose={closeAuthModal}>
       {mode === Modes.LOGIN && <Login onChangeMode={toggleMode} />}
       {mode === Modes.REGISTER && <Register onChangeMode={toggleMode} />}
-      <Button variant="outlined" color="secondary" onClick={closeAuthModal}>
-        Aceptar
-      </Button>
     </CustomModal>
   );
 };

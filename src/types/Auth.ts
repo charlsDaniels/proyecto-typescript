@@ -1,10 +1,9 @@
-export interface User {
-  tokenId: string
-}
+import { User as FirebaseUser } from "firebase/auth";
 
 export type AuthContextType = {
-  user: User | null,
+  authUser: null | FirebaseUser
   openAuthModal: () => void
   closeAuthModal: () => void
-  userIsAuthenticated: () => boolean;
+  userIsAuthenticated: () => boolean
+  logout: () => void
 };

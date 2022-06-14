@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/material/Box";
 import { Category } from "../../../../types/Category";
+import { Link } from "react-router-dom";
 
 interface AsideMenuProps {
   categories: Category[];
@@ -53,8 +54,15 @@ const AsideMenu: React.FC<AsideMenuProps> = ({ categories }) => {
         }}
       >
         {categories.map((category) => (
-          <MenuItem key={category.id} onClick={handleCloseNavMenu}>
-            <Typography textAlign="center" textTransform="capitalize">{category.description}</Typography>
+          <MenuItem
+            component={Link}
+            to={`/category/${category.description}`}
+            key={category.id}
+            onClick={handleCloseNavMenu}
+          >
+            <Typography textAlign="center" textTransform="capitalize">
+              {category.description}
+            </Typography>
           </MenuItem>
         ))}
       </Menu>

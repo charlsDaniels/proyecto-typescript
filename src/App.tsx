@@ -2,6 +2,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import Cart from "./components/Cart/Cart";
 import NavBar from "./components/Navigation/Navbar/NavBar";
 import NotFound from "./components/Navigation/NotFound";
@@ -39,7 +40,16 @@ const App: React.FC = () => {
                   path="/item/:productId"
                   element={<ItemDetailContainer />}
                 />
-                <Route path="/cart" element={<Cart />} />
+
+                <Route
+                  path="/cart"
+                  element={
+                    <ProtectedRoute>
+                      <Cart />
+                    </ProtectedRoute>
+                  }
+                />
+
                 <Route path="/*" element={<NotFound />} />
               </Routes>
             </Container>
